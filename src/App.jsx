@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
@@ -27,7 +28,7 @@ The E-commerce Logistics Management System (ELMS) is a comprehensive platform de
               </Routes>
           </div>
       </Router>
-  );
-}
 
-export default App
+
+
+export default App;
