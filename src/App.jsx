@@ -1,13 +1,12 @@
-import React from 'react'
-import SignupForm from './components/SignupForm'
-import './App.css'
+import React from 'react';
+import FileUpload from './FileUpload';
 
-const App = () => {
+function App() {
   return (
     <div>
-      <SignupForm/>
+      <FileUpload />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

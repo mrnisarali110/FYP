@@ -46,7 +46,7 @@ const SignupForm = () => {
       <label htmlFor="confirmPassword">Confirm Password:</label>
       <input type="password" id="confirmPassword" value={confirmPassword} onChange={handleInputChange} />
 
-      <button className='button' type="submit">Sign Up</button>
+      <button className='btn btn-primary' type="submit">Sign Up</button>
     </form>
   );
 };
