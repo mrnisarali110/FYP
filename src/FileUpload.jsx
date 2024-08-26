@@ -3,164 +3,214 @@ import Papa from 'papaparse';
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
-  const [orders, setOrders] = useState([]);
   const [parsedData, setParsedData] = useState([]);
-  const [showUploadOption, setShowUploadOption] = useState(true);
-  const [nextOrderNo, setNextOrderNo] = useState(null);
-
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
-  };
-
-  const handleFileUpload = () => {
-    if (file) {
-      Papa.parse(file, {
-        header: true,
-        complete: (results) => {
-          const newData = results.data.filter((row) => Object.values(row).some((value) => value!== '')); 
-          newData.map((row, index) => {
-            return {
-              OrderNo: `ORD${index + 1}`,
-              Name: row.Name,
-              Item: row.Item,
-              Quantity: row.Quantity,
-              Address: row.Address,
-              City: row.City,
-            };
-          });
-          setParsedData(newData);
-          setShowUploadOption(false);
-          const lastOrderNo = newData[newData.length - 1].OrderNo;
-          const nextOrderNoValue = `ORD${parseInt(lastOrderNo.substring(3)) + 1}`;
-          setNextOrderNo(nextOrderNoValue);
-        },
-      });
-    }
-  };
-
-  const handleSendOrder = () => {
-    console.log('Send order button clicked!');
-    // add  logic to send the orders here
-  };
-
-  const handleUploadNewFile = () => {
-    setShowUploadOption(true);
-    setParsedData([]);
-  };
-
-  const handleOrderChange = (index, key, value) => {
-    const updatedOrders = [...parsedData];
-    updatedOrders[index][key] = value;
-    setParsedData(updatedOrders);
-  };
-
-  const handleAddNewOrder = () => {
-    const newOrder = {
-      OrderNo: nextOrderNo,
-      Name: '',
-      Item: '',
-      Quantity: '',
-      Address: '',
-      City: '',
-    };
-    setParsedData([...parsedData, newOrder]);
-    const nextOrderNoValue = `ORD${parseInt(nextOrderNo.substring(3)) + 1}`;
-    setNextOrderNo(nextOrderNoValue);
-  };
-
-  const handleDeleteOrder = (index) => {
-    const updatedOrders = [...parsedData];
-    updatedOrders.splice(index, 1);
-    setParsedData(updatedOrders);
-  };
+  const [selectedColumns, setSelectedColumns] = useState({});
+  const [showPopup, setShowPopup] = useState(false);
+  const [editableData, setEditableData] = useState({});
+  const [error, setError] = useState('');
+  const [columnNames, setColumnNames] = useState([]);
 
   useEffect(() => {
-    const handleBeforeUnload = (e) => {
-      if (parsedData.length > 0) {
-        e.preventDefault();
-        e.returnValue = '';
-        return 'You have unsaved changes. Are you sure you want to leave this page?';
+    console.log('Parsed Data:', parsedData);
+    console.log('Editable Data:', editableData);
+  }, [parsedData, editableData]);
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      if (Object.keys(editableData).length > 0) {
+        event.preventDefault();
+        event.returnValue = 'You have unsaved changes. Are you sure you want to leave this page?';
       }
     };
+  
     window.addEventListener('beforeunload', handleBeforeUnload);
+  
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
-  }, [parsedData]);
+  }, [editableData]);
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile && selectedFile.type === 'text/csv') {
+      setFile(selectedFile);
+      setError('');
+    } else {
+      setError('Please upload a valid CSV file.');
+    }
+  };
+
+  const handleParseFile = () => {
+    if (!file) {
+      setError('No file selected.');
+      return;
+    }
+    
+    Papa.parse(file, {
+      header: true,
+      complete: (results) => {
+        console.log('Parsed Results:', results);
+        const columns = results.meta.fields;
+        const data = results.data;
+        setParsedData(data);
+        setColumnNames(columns);
+        const initialSelectedColumns = columns.reduce((acc, column) => ({ ...acc, [column]: true }), {});
+        setSelectedColumns(initialSelectedColumns);
+        setShowPopup(true);
+      },
+      error: (err) => setError(`Parsing error: ${err.message}`)
+    });
+  };
+
+  const handleColumnSelect = (columnName) => {
+    setSelectedColumns((prevSelectedColumns) => ({
+      ...prevSelectedColumns,
+      [columnName]: !prevSelectedColumns[columnName]
+    }));
+  };
+
+  const handleContinue = () => {
+    if (parsedData.length === 0) {
+      setError('No data available to process.');
+      return;
+    }
+
+    const filteredData = parsedData.map((row) => {
+      const newRow = {};
+      Object.keys(row).forEach((columnName) => {
+        if (selectedColumns[columnName]) {
+          newRow[columnName] = row[columnName];
+        }
+      });
+      return newRow;
+    });
+
+    const editableData = filteredData.reduce((acc, row) => {
+      const orderNo = row.OrderNo || `ORD${getMaxSerialNo() + 1}`;
+      if (!acc[orderNo]) {
+        acc[orderNo] = [];
+      }
+      acc[orderNo].push({ ...row, SerialNo: `ORD${getMaxSerialNo() + acc[orderNo].length + 1}` });
+      return acc;
+    }, {});
+    console.log('Editable Data after Continue:', editableData);
+    setEditableData(editableData);
+    setShowPopup(false);
+  };
+
+  const getMaxSerialNo = () => {
+    let maxSerialNo = 0;
+    Object.values(editableData).forEach((rows) => {
+      rows.forEach((row) => {
+        const serialNo = parseInt(row.SerialNo.replace('ORD', ''), 10);
+        if (serialNo > maxSerialNo) {
+          maxSerialNo = serialNo;
+        }
+      });
+    });
+    return maxSerialNo;
+  };
+
+  const handleCellChange = (orderNo, rowIndex, columnName, newValue) => {
+    setEditableData((prevEditableData) => {
+      const newRow = { ...prevEditableData[orderNo][rowIndex] };
+      newRow[columnName] = newValue;
+      prevEditableData[orderNo][rowIndex] = newRow;
+      return { ...prevEditableData };
+    });
+  };
+
+  const handleDeleteRow = (orderNo, rowIndex) => {
+    setEditableData((prevEditableData) => {
+      const newData = { ...prevEditableData };
+      newData[orderNo].splice(rowIndex, 1);
+      if (newData[orderNo].length === 0) {
+        delete newData[orderNo];
+      }
+      return newData;
+    });
+  };
+
+  const handleAddNewOrder = () => {
+    const newOrderNo = `ORD${getMaxSerialNo() + 1}`;
+    const newEmptyRow = Object.keys(selectedColumns).reduce((acc, column) => {
+      if (selectedColumns[column]) {
+        acc[column] = ''; // Initialize with empty values only for selected columns
+      }
+      return acc;
+    }, {});
+    setEditableData((prevEditableData) => ({
+      ...prevEditableData,
+      [newOrderNo]: [{ ...newEmptyRow, SerialNo: newOrderNo }]  // Add an empty row with the new order number
+    }));
+  };
+
+  const handleGenerateLabel = () => {
+    console.log('Preparing to send data:', editableData);
+    alert('Data prepared for sending: Check console for details.');
+  };
 
   return (
     <div>
-      {showUploadOption && (
-        <div>
-          <h1>File Upload</h1>
-          <input type="file" onChange={handleFileChange} />
-          <button onClick={handleFileUpload}>Upload File</button>
+      <input type="file" accept=".csv" onChange={handleFileChange} />
+      <button onClick={handleParseFile}>Upload File</button>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {showPopup && (
+        <div className="popup">
+          <h2>Select columns to display</h2>
+          <ul>
+            {Object.keys(selectedColumns).map((columnName) => (
+              <li key={columnName}>
+                <input
+                  type="checkbox"
+                  checked={selectedColumns[columnName]}
+                  onChange={() => handleColumnSelect(columnName)}
+                />
+                <span>{columnName}</span>
+              </li>
+            ))}
+          </ul>
+          <button onClick={handleContinue}>Continue</button>
         </div>
       )}
-      {!showUploadOption && (
+      {Object.keys(editableData).length > 0 && (
         <div>
-          <h2>Orders:</h2>
           <table>
             <thead>
               <tr>
-                <th>Order No</th>
-                <th>Name</th>
-                <th>Item</th>
-                <th>Quantity</th>
-                <th>Address</th>
-                <th>City</th>
-                <th>Action</th>
+                <th>Serial No.</th>
+                {Object.keys(selectedColumns).map((columnName) => (
+                  columnName !== 'SerialNo' && selectedColumns[columnName] && (
+                    <th key={columnName}>{columnName}</th>
+                  )
+                ))}
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {parsedData.map((order, index) => (
-                <tr key={index}>
-                  <td>{order.OrderNo}</td>
-                  <td>
-                    <input
-                      type="text"
-                      value={order.Name}
-                      onChange={(e) => handleOrderChange(index, 'Name', e.target.value)}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      value={order.Item}
-                      onChange={(e) => handleOrderChange(index, 'Item', e.target.value)}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="number"
-                      value={order.Quantity}
-                      onChange={(e) => handleOrderChange(index, 'Quantity', e.target.value)}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      value={order.Address}
-                      onChange={(e) => handleOrderChange(index, 'Address', e.target.value)}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      value={order.City}
-                      onChange={(e) => handleOrderChange(index, 'City', e.target.value)}
-                    />
-                  </td>
-                  <td>
-                    <button onClick={() => handleDeleteOrder(index)}>Delete</button>
-                  </td>
-                </tr>
+              {Object.keys(editableData).map((orderNo) => (
+                editableData[orderNo].map((row, rowIndex) => (
+                  <tr key={rowIndex}>
+                    <td>{row.SerialNo}</td>
+                    {Object.keys(selectedColumns).map((columnName) => (
+                      columnName !== 'SerialNo' && selectedColumns[columnName] && (
+                        <td key={columnName}>
+                          <input
+                            type="text"
+                            value={row[columnName] || ''}
+                            onChange={(e) => handleCellChange(orderNo, rowIndex, columnName, e.target.value)}
+                          />
+                        </td>
+                      )
+                    ))}
+                    <td>
+                      <button onClick={() => handleDeleteRow(orderNo, rowIndex)}>Delete</button>
+                    </td>
+                  </tr>
+                ))
               ))}
             </tbody>
           </table>
           <button onClick={handleAddNewOrder}>Add New Order</button>
-          <button onClick={handleSendOrder}>Send Order</button>
-          <button onClick={handleUploadNewFile}>Upload New File</button>
+          <button onClick={handleGenerateLabel}>Generate Label</button>
         </div>
       )}
     </div>
