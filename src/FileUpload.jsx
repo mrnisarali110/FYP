@@ -72,7 +72,7 @@ const FileUpload = () => {
       setError('No data available to process.');
       return;
     }
-
+  
     const filteredData = parsedData.map((row) => {
       const newRow = {};
       Object.keys(row).forEach((columnName) => {
@@ -82,7 +82,7 @@ const FileUpload = () => {
       });
       return newRow;
     });
-
+  
     const editableData = filteredData.reduce((acc, row) => {
       const orderNo = row.OrderNo || `ORD${getMaxSerialNo() + 1}`;
       if (!acc[orderNo]) {
@@ -91,10 +91,12 @@ const FileUpload = () => {
       acc[orderNo].push({ ...row, SerialNo: `ORD${getMaxSerialNo() + acc[orderNo].length + 1}` });
       return acc;
     }, {});
+  
     console.log('Editable Data after Continue:', editableData);
     setEditableData(editableData);
     setShowPopup(false);
   };
+  
 
   const getMaxSerialNo = () => {
     let maxSerialNo = 0;
@@ -143,9 +145,35 @@ const FileUpload = () => {
     }));
   };
 
-  const handleGenerateLabel = () => {
+  const handleGenerateLabel = async () => {
     console.log('Preparing to send data:', editableData);
-    alert('Data prepared for sending: Check console for details.');
+  
+    // Prepare the data to send to the server
+    const dataToSend = Object.values(editableData).flat();
+  
+    try {
+      // Send data to the backend
+      const response = await fetch('http://localhost:3001/generate-labels', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToSend),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      // Assuming the server responds with a single PDF URL
+      const { url } = await response.json();
+  
+      // Open the PDF in a new tab
+      window.open(url, '_blank');
+    } catch (error) {
+      console.error('Error generating labels:', error);
+      alert('Failed to generate labels. Please try again.');
+    }
   };
 
   return (
