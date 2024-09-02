@@ -1,0 +1,23 @@
+.about-us-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px; /* Adds space between the text and image */
+}
+
+.about-us-description {
+    flex: 1;
+    max-width: 60%;
+}
+
+.about-us-image {
+    flex: 1;
+    max-width: 40%;
+}
+
+.about-us-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px; /* Optional: Adds rounded corners to the image */
+}
