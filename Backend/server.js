@@ -1,40 +1,52 @@
-const express = require('express');
-const cors = require('cors');
-const PDFDocument = require('pdfkit');
-const fs = require('fs');
-const path = require('path');
+const express = require("express");
+const cors = require("cors");
+const PDFDocument = require("pdfkit");
+const fs = require("fs");
+const path = require("path");
+const mongoose = require('mongoose');
+
+const authRoutes = require("./routers/auth.routers");
 
 const app = express();
-const port = 3001;
+const PORT = process.env.PORT || 3001;
+mongoose.connect('mongodb+srv://test:test123@cluster0.o0nfgkb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
 
+// Globle Middleware
 app.use(express.json());
 app.use(cors());
+
+// APIs Router Register here.
+app.use("/auth", authRoutes);
+app.get("/testing", (req, res) => {
+  res.status(200).json({ message: "Server live" });
+});
 
 // Function to generate a random 8-digit tracking number
 function generateTrackingNumber() {
   return Math.floor(10000000 + Math.random() * 90000000).toString();
 }
 
-app.post('/generate-labels', (req, res) => {
+// core business logic
+app.post("/generate-labels", (req, res) => {
   try {
     const orders = req.body; // Array of order details
 
     if (!orders || !Array.isArray(orders) || orders.length === 0) {
-      return res.status(400).json({ error: 'Invalid order data' });
+      return res.status(400).json({ error: "Invalid order data" });
     }
 
-    const pdfPath = path.join(__dirname, 'labels.pdf');
+    const pdfPath = path.join(__dirname, "labels.pdf");
     const doc = new PDFDocument();
     doc.pipe(fs.createWriteStream(pdfPath));
 
     orders.forEach((order) => {
       // Add date and time at the top center
       const date = new Date().toLocaleString();
-      doc.fontSize(12).text(date, { align: 'center' });
+      doc.fontSize(12).text(date, { align: "center" });
       doc.moveDown(4); // Add some space below "time"
 
       // Add "ELMS" at the top left corner
-      doc.moveUp().fontSize(20).text('ELMS', { align: 'left' });
+      doc.moveUp().fontSize(20).text("ELMS", { align: "left" });
 
       doc.moveDown(0); // Add some space below "ELMS"
 
@@ -46,12 +58,15 @@ app.post('/generate-labels', (req, res) => {
       const padding = 10; // Padding inside the box
 
       Object.keys(order).forEach((key) => {
-        if (key.toLowerCase() !== 'serialno') { // Skip SerialNo (case insensitive)
+        if (key.toLowerCase() !== "serialno") {
+          // Skip SerialNo (case insensitive)
           doc.rect(boxX, boxY, boxWidth, boxHeight).stroke(); // Draw the box
-          doc.fontSize(14).text(`${key}: ${order[key]}`, boxX + padding, boxY + padding, {
-            width: boxWidth - padding * 2,
-            height: boxHeight - padding * 2,
-          });
+          doc
+            .fontSize(14)
+            .text(`${key}: ${order[key]}`, boxX + padding, boxY + padding, {
+              width: boxWidth - padding * 2,
+              height: boxHeight - padding * 2,
+            });
           boxY += boxHeight; // Move Y-coordinate for the next row
         }
       });
@@ -60,7 +75,9 @@ app.post('/generate-labels', (req, res) => {
 
       // Generate and add a random 8-digit tracking number in the center
       const trackingNumber = generateTrackingNumber();
-      doc.fontSize(12).text(`Tracking Number: ${trackingNumber}`, { align: 'center' });
+      doc
+        .fontSize(12)
+        .text(`Tracking Number: ${trackingNumber}`, { align: "center" });
 
       // Add a page break for each label
       doc.addPage();
@@ -68,24 +85,24 @@ app.post('/generate-labels', (req, res) => {
 
     doc.end();
 
-    res.json({ url: `http://localhost:${port}/labels.pdf` });
+    res.json({ url: `http://localhost:${PORT}/labels.pdf` });
   } catch (error) {
-    console.error('Error generating label:', error);
-    res.status(500).json({ error: 'Failed to generate label' });
+    console.error("Error generating label:", error);
+    res.status(500).json({ error: "Failed to generate label" });
   }
 });
 
 // Serve the generated PDF labels
-app.get('/labels.pdf', (req, res) => {
-  const filePath = path.join(__dirname, 'labels.pdf');
+app.get("/labels.pdf", (req, res) => {
+  const filePath = path.join(__dirname, "labels.pdf");
 
   if (fs.existsSync(filePath)) {
     res.sendFile(filePath);
   } else {
-    res.status(404).send('File not found');
+    res.status(404).send("File not found");
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
