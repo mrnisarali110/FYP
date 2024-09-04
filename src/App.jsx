@@ -4,7 +4,10 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import FileUpload from './FileUpload';
 import TrackingPage from './components/TrackingPage';
-import AboutUs from './components/AboutUs';  // Import the AboutUs component
+import Faq from './components/Faq';
+import PrivacySecurity from './components/PrivacySecurity';
+import Footer from './components/Footer';
+import AboutUs from './components/AboutUs';
 import './App.css';
 
 function App() {
@@ -20,7 +23,8 @@ function App() {
             <li><Link to="/login">Login</Link></li>
             <li><Link to="/FileUpload">FileUpload</Link></li>
             <li><Link to="/tracking">Track Your Order</Link></li>
-            <li><Link to="/about">About Us</Link></li>  {/* Add "About Us" link */}
+            <li><Link to="/about">About Us</Link></li>
+
           </ul>
         </nav>
         <Routes>
@@ -35,8 +39,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/FileUpload" element={<FileUpload />} />
           <Route path="/tracking" element={<TrackingPage />} />
-          <Route path="/about" element={<AboutUs />} />  {/* Add "About Us" route */}
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/privacy-security" element={<PrivacySecurity />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );
