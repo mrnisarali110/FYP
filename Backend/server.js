@@ -4,7 +4,7 @@ const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
-const qr = require('qr-image');  // Import the qr-image package
+const qr = require('qr-image');  // Import the qr-image package okok
 
 const authRoutes = require("./routers/auth.routers");
 
