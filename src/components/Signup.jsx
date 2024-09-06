@@ -93,6 +93,7 @@ function Signup() {
     }
 
     const { confirmPassword, ...result } = formData;
+
     const data = await axios.post(
       `http://localhost:3001/auth/register`,
       result
