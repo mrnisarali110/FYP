@@ -4,6 +4,7 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import FileUpload from './FileUpload';
 import Contact from './components/Contact';
+import FAQ from './components/FAQ';
 import './App.css'
 import Business from './components/Business';
 import Home from './components/Home';
@@ -22,6 +23,7 @@ function App() {
                         <li><Link to="/login">Login</Link></li>
                         <li><Link to="/FileUpload">FileUpload</Link></li>
                         <li><Link to="/contact">Contact Us</Link></li>
+                        <li><Link to="/faq">FAQ's</Link></li>
 
                     </ul>
                 </nav>
@@ -34,6 +36,7 @@ function App() {
                     <Route path="/business" element={<Business />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/faq" element={<FAQ />} />
                     <Route path="/FileUpload" element={<FileUpload />} />
                 </Routes>
             </div>
