@@ -4,7 +4,7 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import FileUpload from './FileUpload';
 import Contact from './components/Contact';
-import FAQ from './components/FAQ';
+import FAQ from './components/FAQ'; 
 import './App.css'
 import Business from './components/Business';
 import Home from './components/Home';
@@ -14,7 +14,6 @@ function App() {
         <Router>
             <div>
                 <h1>E-commerce Logistic Management System</h1>
-                <h3>ELMS</h3>
                 <nav>
                     <ul>
                         <li><Link to="/home">Home</Link></li>
