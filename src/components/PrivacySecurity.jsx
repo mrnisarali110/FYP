@@ -67,7 +67,7 @@ const PrivacySecurity = () => {
       
       <h4>Contact Us</h4>
       <p>
-        If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <a href="nisar.g21237@iqra.edu.pk">elms-company@gmail.com</a>.
+        If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <a href="nisar.g21237@iqra.edu.pk">elms@company.com</a>.
       </p>
     </div>
   );

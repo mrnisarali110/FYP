@@ -16,11 +16,8 @@ const Footer = () => {
               <a href="https://www.linkedin.com/in/sabeerah-khurram-ab4855247/" target="_blank" rel="noopener noreferrer" className="text-white mx-2">
                 <i className="bi bi-linkedin"></i>
               </a>
-              <a href="https://www.instagram.com/sab_spov?igsh=dnZ2cWxrc2xlajRr" target="_blank" rel="noopener noreferrer" className="text-white mx-2">
+              <a href="https://www.instagram.com/iqrauniversity.iugc/" target="_blank" rel="noopener noreferrer" className="text-white mx-2">
                 <i className="bi bi-instagram"></i>
-              </a>
-              <a href="https://www.twitter.com/yourprofile" target="_blank" rel="noopener noreferrer" className="text-white mx-2">
-                <i className="bi bi-twitter"></i>
               </a>
               <a href="https://www.youtube.com/@SabeerahKhurram" target="_blank" rel="noopener noreferrer" className="text-white mx-2">
                 <i className="bi bi-youtube"></i>

@@ -1,23 +1,80 @@
-.about-us-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    gap: 20px; /* Adds space between the text and image */
+.hero-section {
+    position: relative;
+    height: 60vh;
+    overflow: hidden;
 }
 
-.about-us-description {
-    flex: 1;
-    max-width: 60%;
+.hero-section img {
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(50%);
 }
 
-.about-us-image {
-    flex: 1;
-    max-width: 40%;
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 15px;
 }
 
-.about-us-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px; /* Optional: Adds rounded corners to the image */
+.card-img-top {
+    max-height: 250px;
+    object-fit: cover;
+}
+
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+ul.list-unstyled {
+    line-height: 1.8;
+}
+
+i.bi-check-circle {
+    color: #28a745; /* Bootstrap green */
+}
+.hero-section {
+    position: relative;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.hero-section img {
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(50%);
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 15px;
+}
+
+.card-img-top {
+    max-height: 250px;
+    object-fit: cover;
+}
+
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+ul.list-unstyled li {
+    margin-bottom: 10px;
 }
