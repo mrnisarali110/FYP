@@ -7,13 +7,14 @@ const AboutUs = () => {
     return (
         <div className="container-fluid">
             {/* Hero Section */}
-            <section className="hero-section position-relative text-center text-white">
-                <img src="/assets/hero-image.jpg" alt="ELMS Team" className="img-fluid w-100" />
-                <div className="hero-text position-absolute top-50 start-50 translate-middle bg-dark p-5 rounded shadow-lg">
-                    <h1 className="display-4 fw-bold">About Us</h1>
-                    <p className="lead">Empowering E-commerce Logistics with Innovation and Excellence</p>
-                </div>
-            </section>
+            <section className="hero-section text-center text-white">
+    <img src="\src\assets\logo.PNG" alt="ELMS Team" className="img-fluid" />
+    <div className="hero-text position-absolute top-50 start-50 translate-middle bg-dark p-5 rounded shadow-lg">
+        <h1 className="display-4 fw-bold">About Us</h1>
+        <p className="lead">Empowering E-commerce Logistics with Innovation and Excellence</p>
+    </div>
+</section>
+
             
             {/* Content Section */}
             <section className="row my-5">

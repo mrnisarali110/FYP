@@ -12,3 +12,20 @@
     color: #007bff;
   }
   
+  .footer h5 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.footer a:hover {
+    color: #f8c471;
+    text-decoration: underline;
+}
+
+.input-group .form-control {
+    border-radius: 0;
+}
+
+.input-group .btn-outline-light {
+    border-radius: 0;
+}

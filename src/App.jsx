@@ -8,6 +8,8 @@ import Faq from './components/Faq';
 import PrivacySecurity from './components/PrivacySecurity';
 import Footer from './components/Footer';
 import AboutUs from './components/AboutUs';
+import ContactUs from './components/ContactUs';
+import ReturnsRefunds from './components/ReturnsRefunds';
 import './App.css';
 
 function App() {
@@ -41,6 +43,9 @@ function App() {
           <Route path="/tracking" element={<TrackingPage />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/faq" element={<Faq />} />
+          <Route path="/ContactUs" element={<ContactUs />} />
+          <Route path="/ReturnsRefunds" component={<ReturnsRefunds/>} />
+
           <Route path="/privacy-security" element={<PrivacySecurity />} />
         </Routes>
         <Footer />
