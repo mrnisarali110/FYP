@@ -202,7 +202,7 @@ button:hover {
   border-radius: 10px;
 }
 
-
+/* home css */
 .home-container {
   font-family: 'Arial', sans-serif;
 }
@@ -226,6 +226,28 @@ button:hover {
 .bg-primary {
   background-color: #007bff !important;
 }
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0; /* Initial state */
+  animation: fadeInSlideUp 1s ease-out forwards; /* Apply animation */
+}
+
+/* Optional: Ensure images inside the cards are also animated if needed */
+.animate-on-scroll img {
+  animation: fadeInSlideUp 1s ease-out forwards;
+}
+
+
 
 .bg-warning {
   background-color: #ffcc66 !important;
@@ -257,6 +279,37 @@ button:hover {
   display: block;
   margin: 0 auto; /* Center the image */
 }
+.low-cost-container {
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+}
+
+.main-heading {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.text-dark {
+  color: #333;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.shadow-sm {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
 
 
 
@@ -437,4 +490,93 @@ button:hover {
 .nav-list a:hover {
   background-color: #495057;
   border-radius: 4px;
+}
+/* profile csss */
+.profile-container {
+  max-width: 500px; /* Set the maximum width to 400px */
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: absolute; /* Use absolute positioning */
+  top: 50%; /* Vertically center */
+  left: 50%; /* Horizontally center */
+  transform: translate(-50%, -50%); /* Corrects the offset from top-left corner */
+}
+
+
+.profile-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.profile-overview {
+  margin-bottom: 20px;
+}
+
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.profile-form .form-group {
+  margin-bottom: 15px;
+}
+
+.floating-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.btn-submit {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-submit:hover {
+  background-color: #0056b3;
+}
+
+.image-preview {
+  width: 100px;
+  height: 100px;
+  margin-top: 10px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+/* Modal Styling */
+.modal-header, .modal-footer {
+  background-color: #007bff;
+  color: white;
+}
+
+.modal-title {
+  font-family: 'Poppins', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+      padding: 10px;
+  }
 }
