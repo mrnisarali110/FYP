@@ -33,17 +33,7 @@ function App() {
             path="/"
             element={
               <div>
-                Welcome to the E-commerce Logistic Management System. The
-                E-commerce Logistics Management System (ELMS) is a comprehensive
-                platform designed to streamline and optimize logistics for
-                e-commerce businesses. By integrating multiple courier services,
-                automating order processing, and offering cost-effective
-                delivery solutions like intercity bike delivery, ELMS aims to
-                reduce shipping costs, improve delivery speed, and enhance
-                overall customer satisfaction. Additionally, ELMS provides
-                high-quality packaging materials at discounted rates, ensuring
-                businesses can manage their logistics efficiently and
-                economically.
+                Welcome to the E-commerce Logistic Management System.
               </div>
             }
           />
