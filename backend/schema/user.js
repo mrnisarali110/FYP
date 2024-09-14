@@ -1,15 +1,17 @@
 const mongoose = require("mongoose");
 const bcryptjs = require("bcryptjs");
-const jwt = require("jsonwebtoken");  // Add this line to use JWT
+const jwt = require("jsonwebtoken");
+require('dotenv').config();
 
 const userSchema = new mongoose.Schema({
   name: String,
-  email: String,
-  password: String,
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
   storeName: String,
   storeUrl: String,
   phone: String,
   cnic: String,
+  userId: { type: mongoose.Schema.Types.ObjectId, unique: true, default: () => new mongoose.Types.ObjectId() }
 });
 
 // Hash password before saving
@@ -27,12 +29,13 @@ userSchema.methods.comparePassword = async function (password) {
 
 // Generate JWT token method
 userSchema.methods.generateToken = function () {
-  // Add your own secret key here
-  const secretKey = "your_secret_key"; // Replace with a real secret key in production
+  const secretKey = process.env.SECRET_KEY; // Use environment variable
+  if (!secretKey) {
+    throw new Error('Secret key not defined in environment variables');
+  }
 
-  // Payload can include user id or any relevant info
-  const token = jwt.sign({ id: this._id, email: this.email }, secretKey, {
-    expiresIn: "1h",  // Token expiration time
+  const token = jwt.sign({ id: this.userId, email: this.email }, secretKey, {
+    expiresIn: '1h', // Token expiration time
   });
 
   return token;

@@ -30,12 +30,37 @@ function Login() {
             // Make API call to login endpoint
             axios.post('http://localhost:3001/auth/login', formData)
                 .then(response => {
-                    console.log('Login successful:', response.data);
-                    setLoginStatus('Login Successful!'); // Update login status on success
+                    if (response.status === 200) {
+                        // If the response status is 200 (OK), treat it as successful login
+                        console.log('Login successful:', response.data);
+                        setLoginStatus('Login Successful!'); // Update login status on success
+                    } else {
+                        // Handle unexpected success responses (though this should not happen)
+                        setLoginStatus('Unexpected response from the server.');
+                    }
                 })
                 .catch(error => {
-                    console.error('Login failed:', error.response.data);
-                    setLoginStatus('Login Failed. Please check your details and try again.'); // Update login status on failure
+                    if (error.response) {
+                        // Backend returned a response with an error code
+                        console.error('Login failed:', error.response.data);
+
+                        // Check the error response and display appropriate message
+                        if (error.response.status === 404) {
+                            setLoginStatus('Login Failed: User not found.');
+                        } else if (error.response.status === 401) {
+                            setLoginStatus('Login Failed: Incorrect password.');
+                        } else if (error.response.status === 400) {
+                            setLoginStatus('Login Failed: Invalid email format.');
+                        } else {
+                            setLoginStatus(`Login Failed: ${error.response.data.message}`);
+                        }
+                    } else if (error.request) {
+                        // No response was received from the backend
+                        setLoginStatus('Login Failed: No response from the server. Please try again later.');
+                    } else {
+                        // Other errors (like client-side issues)
+                        setLoginStatus('Login Failed: An error occurred. Please try again.');
+                    }
                 });
         }
     };
@@ -73,7 +98,6 @@ function Login() {
 
     return (
         <div>
-            <div></div>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Email:</label>
@@ -86,7 +110,7 @@ function Login() {
                     {errors.password && <div style={{ color: 'red' }}>{errors.password}</div>}
                 </div>
                 <button type="submit">Login</button>
-                {loginStatus && <div style={{ color: 'green' }}>{loginStatus}</div>} 
+                {loginStatus && <div style={{ color: loginStatus.includes('Failed') ? 'red' : 'green' }}>{loginStatus}</div>} {/* Adjust color for success/failure */}
             </form>
         </div>
     );

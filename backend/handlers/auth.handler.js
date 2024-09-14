@@ -38,7 +38,7 @@ const Register = async (req, res) => {
 
 //Login user
 const Login = async (req, res) => {
-  console.log("Login request received", req.body); // Log the request body
+  console.log("Login request received", req.body);
 
   const { email, password } = req.body;
 
@@ -50,7 +50,7 @@ const Login = async (req, res) => {
 
   const loginValidation = await loginSchema.validate(req.body);
   if (loginValidation.error) {
-    console.log("Login validation failed", loginValidation.error.details); // Log validation errors
+    console.log("Login validation failed", loginValidation.error.details);
     const errorResponse = loginValidation.error.details.reduce((acc, err) => {
       const key = err.context.key;
       const message = err.message.replace(/"/g, ""); // Remove the extra quotes
@@ -58,7 +58,7 @@ const Login = async (req, res) => {
       return acc;
     }, {});
 
-    return res.status(200).json(errorResponse);
+    return res.status(400).json(errorResponse); // Return 400 (Bad Request) for validation errors
   }
 
   console.log("Login validation passed, checking user in DB...");
@@ -67,7 +67,7 @@ const Login = async (req, res) => {
   const user = await User.findOne({ email });
   if (!user) {
     console.log("User not found");
-    return res.status(404).json({ message: "User not found" });
+    return res.status(404).json({ message: "User not found" }); // Return 404 (Not Found) for user not found
   }
 
   console.log("User found, verifying password...");
@@ -76,7 +76,7 @@ const Login = async (req, res) => {
   const isValidPassword = await user.comparePassword(password);
   if (!isValidPassword) {
     console.log("Invalid password");
-    return res.status(401).json({ message: "Invalid password" });
+    return res.status(401).json({ message: "Invalid password" }); // Return 401 (Unauthorized) for invalid password
   }
 
   console.log("Password valid, generating token...");
@@ -86,7 +86,7 @@ const Login = async (req, res) => {
 
   console.log("Login successful, token generated:", token);
 
-  res.json({ token, message: "User logged in successfully" });
+  res.status(200).json({ token, message: "User logged in successfully" });
 };
 
 
