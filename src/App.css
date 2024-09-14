@@ -201,6 +201,93 @@ button:hover {
   object-fit: cover;
   border-radius: 10px;
 }
+/* shipping */
+/* Container Styling for Shipping Procedure */
+.shipping-procedure-container {
+  background-color: #e0f7fa; /* Light blue color */
+  padding: 40px;
+  border-radius: 8px;
+  margin-top: 50px; /* Adjust this to prevent overlap */
+}
+
+.shipping-procedure-title {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.shipping-procedure-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333; /* Text color for readability */
+}
+
+/* Animation for sliding in the image */
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Apply the animation to the image */
+.shipping-procedure-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  animation: slideInFromTop 1.5s ease-out; /* Duration and timing */
+}
+
+
+/* Hover effect for the image */
+.shipping-procedure-image:hover {
+  transform: scale(1.05); /* Slight zoom-in effect on hover */
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Keyframes for fadeInLeft animation */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+
+/* Add spacing below the "Work With Us" banner */
+/* Add spacing below the "Work With Us" banner */
+.work-with-us-banner {
+  margin-bottom: 60px; /* Increase the space below the banner */
+  padding: 40px 0; /* Add vertical padding inside the banner for better spacing */
+  clear: both; /* Ensure no floating elements overlap */
+}
+
+/* Add padding and ensure no overlap for the Shipping Procedure section */
+.shipping-procedure-container {
+  padding-top: 60px; /* Adds space between the banner and this section */
+  padding-bottom: 60px; /* Adds space at the bottom for better structure */
+  clear: both; /* Prevent overlap due to floating elements */
+}
+
+
 
 /* home css */
 .home-container {

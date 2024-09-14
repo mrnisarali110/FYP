@@ -4,8 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import FileUpload from './FileUpload';
-import Contact from './components/Contact';
-import FAQ from './components/FAQ'; 
 import Profile from './components/Profile';
 import Business from './components/Business';
 import Home from './components/Home';
@@ -34,8 +32,6 @@ function App() {
                             <li><Link to="/login">Login</Link></li>
                             <li><Link to="/FileUpload">FileUpload</Link></li>
                             <li><Link to="/profile">Profile</Link></li>
-                            <li><Link to="/contact">Contact Us</Link></li>
-                            <li><Link to="/faq">FAQ's</Link></li>
                         </ul>
                     </nav>
                 </header>
@@ -44,10 +40,8 @@ function App() {
                     <Route path="/home" element={<Home />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/business" element={<Business />} />
-                    <Route path="/contact" element={<Contact />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/faq" element={<FAQ />} />
                     <Route path="/FileUpload" element={<FileUpload />} />
                 </Routes>
             </div>

@@ -4,6 +4,7 @@ import '../App.css'; // Make sure to include your CSS here
 
 // Importing images
 import cityImage from '../assets/image/city.png';
+import shippingProcedureImage from '../assets/image/shippingProcedure.jpg';
 import paymentImage from '../assets/image/payment.png';
 import customerImage from '../assets/image/customer.png';
 import globalImage from '../assets/image/global.jpg'; // New image for logistics info
@@ -83,26 +84,44 @@ const Business = () => {
           </Grid>
         </Grid>
       </Container>
+      {/* Work with Us Banner Section */}
+<div className="work-with-us-banner">
+  <Container>
+    <Grid container spacing={4} alignItems="center">
+      <Grid item xs={12} md={6}>
+        <Typography variant="h4" className="work-with-us-title">
+          Work With Us
+        </Typography>
+        <Typography variant="body1" className="work-with-us-description">
+          Join us to experience the best logistics services in the industry...
+        </Typography>
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <img src={workWithUsImage} alt="Work with Us" className="work-with-us-image" />
+      </Grid>
+    </Grid>
+  </Container>
+</div>
 
-      {/* New "Work with Us" Banner Section */}
-      <div className="work-with-us-banner">
-        <Container>
-          <Grid container spacing={4} alignItems="center">
-            <Grid item xs={12} md={6}>
-              <Typography variant="h4" className="work-with-us-title">
-                Work With Us
-              </Typography>
-              <Typography variant="body1" className="work-with-us-description">
-                Join us to experience the best logistics services in the industry. Our platform offers seamless integration with your business needs, ensuring timely delivery, secure packaging, and an unmatched customer experience. Whether you're an individual or a business looking for logistics solutions, we are here to meet your needs. Choose us for reliable, efficient, and cost-effective logistics solutions.
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <img src={workWithUsImage} alt="Work with Us" className="work-with-us-image" />
-            </Grid>
-          </Grid>
-        </Container>
+{/* Shipping Procedure Section */}
+<Container className="shipping-procedure-container">
+  <Typography variant="h4" className="shipping-procedure-title">
+    Shipping Procedure
+  </Typography>
+  <Grid container spacing={4} className="shipping-procedure-grid">
+    <Grid item xs={12} md={6}>
+      <Typography variant="body1" className="shipping-procedure-description">
+      Our shipping procedure is simple and efficient, designed to ensure a seamless experience for both businesses and customers. Start by logging into your account or creating one if you're new to the platform. Once logged in, your store can quickly submit order details, including delivery information and product specifics. Our system will then generate a shipping label with all necessary details, such as the courier company selected to handle the delivery. This label ensures your package is processed and delivered securely. The assigned courier will handle the shipment, and you can track the package in real-time as it moves through the logistics chain. This streamlined process makes managing deliveries hassle-free, ensuring timely and reliable shipping for all your orders.      </Typography>
+    </Grid>
+    <Grid item xs={12} md={6}>
+      <img src={shippingProcedureImage} alt="Shipping Procedure" className="shipping-procedure-image" />
+    </Grid>
+  </Grid>
+</Container>
+
+
+      
       </div>
-    </div>
   );
 };
 
