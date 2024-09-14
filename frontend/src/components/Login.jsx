@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'; // Add Axios for making API requests
 
 function Login() {
     const [formData, setFormData] = useState({
@@ -10,6 +11,8 @@ function Login() {
         email: '',
         password: ''
     });
+
+    const [loginStatus, setLoginStatus] = useState(''); // Add a new state variable for login status
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -24,8 +27,16 @@ function Login() {
         e.preventDefault();
         const isValid = validateForm();
         if (isValid) {
-            console.log('Login data submitted:', formData);
-            // You can add further processing here
+            // Make API call to login endpoint
+            axios.post('http://localhost:3001/auth/login', formData)
+                .then(response => {
+                    console.log('Login successful:', response.data);
+                    setLoginStatus('Login Successful!'); // Update login status on success
+                })
+                .catch(error => {
+                    console.error('Login failed:', error.response.data);
+                    setLoginStatus('Login Failed. Please check your details and try again.'); // Update login status on failure
+                });
         }
     };
 
@@ -62,7 +73,7 @@ function Login() {
 
     return (
         <div>
-            <h2></h2>
+            <div></div>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Email:</label>
@@ -75,6 +86,7 @@ function Login() {
                     {errors.password && <div style={{ color: 'red' }}>{errors.password}</div>}
                 </div>
                 <button type="submit">Login</button>
+                {loginStatus && <div style={{ color: 'green' }}>{loginStatus}</div>} 
             </form>
         </div>
     );

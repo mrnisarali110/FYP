@@ -10,11 +10,21 @@ const authRoutes = require("./routers/auth.routers");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-mongoose.connect('mongodb+srv://test:test123@cluster0.o0nfgkb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
+mongoose.connect('mongodb+srv://test:test123@cluster0.o0nfgkb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+  .then(() => {
+    console.log('Connected to MongoDB Atlas');
+  })
+  .catch((err) => {
+    console.error('MongoDB connection error:', err);
+  });
 
 // Global Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173', // Allow requests only from your frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
+  credentials: true // If you are using cookies or credentials, enable this
+}));
 
 // APIs Router Register here.
 app.use("/auth", authRoutes);
@@ -22,12 +32,12 @@ app.get("/testing", (req, res) => {
   res.status(200).json({ message: "Server live" });
 });
 
+// Core business logic
 // Function to generate a random 8-digit tracking number
 function generateTrackingNumber() {
   return Math.floor(10000000 + Math.random() * 90000000).toString();
 }
 
-// Core business logic
 app.post("/generate-labels", (req, res) => {
   try {
     const orders = req.body; // Array of order details

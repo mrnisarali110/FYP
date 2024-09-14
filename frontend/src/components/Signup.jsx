@@ -86,22 +86,43 @@ function Signup() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (Object.values(errors).some((error) => error !== "")) {
-      alert("Please fix all errors before submitting");
-      return;
-    }
+  e.preventDefault();
+  if (Object.values(errors).some((error) => error !== "")) {
+    alert("Please fix all errors before submitting");
+    return;
+  }
 
-    const { confirmPassword, ...result } = formData;
+  const { confirmPassword, ...result } = formData;
 
-    const data = await axios.post(
-      `http://localhost:3001/auth/register`,
-      result
-    );
-
-    console.log({ data });
-    console.log("Form data submitted:", formData);
-  };
+  try {
+    const response = await axios.post(`http://localhost:3001/auth/register`, result);
+    console.log({ response });
+    alert("Registration successful!"); // Display success message
+    setFormData({ // Clear form fields
+      name: "",
+      email: "",
+      phone: "",
+      cnic: "",
+      storeName: "",
+      storeUrl: "",
+      password: "",
+      confirmPassword: "",
+    });
+    setErrors({ // Clear error messages
+      name: "",
+      email: "",
+      phone: "",
+      cnic: "",
+      storeName: "",
+      storeUrl: "",
+      password: "",
+      confirmPassword: "",
+    });
+  } catch (error) {
+    console.error(error);
+    alert("Registration failed. Please try again.");
+  }
+};
 
   return (
     <div>
