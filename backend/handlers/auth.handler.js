@@ -1,6 +1,7 @@
 const ExpressJoiValidation = require("express-joi-validation");
 const Joi = require("joi");
 const User = require("../schema/user");
+const Order = require("../schema/order");
 const userRegistrationSchema = require("../validations/registration");
 
 //register user
@@ -91,6 +92,48 @@ const Login = async (req, res) => {
 
 
 
+//save order in DB
+const SaveOrders = async (req, res) => {
+  try {
+    // Extract userId from the authenticated request
+    if (!req.user || !req.user.id) {
+      console.error('User not authenticated or userId not found in request');
+      return res.status(401).json({ message: 'User not authenticated' });
+    }
+    const userId = req.user.id;
+
+    // Extract order data from the request body
+    const orderData = req.body.orders; // Assuming the frontend sends 'orders' array
+
+    // Perform validation on orderData if needed
+    if (!Array.isArray(orderData) || orderData.length === 0) {
+      console.error('Invalid order data:', orderData);
+      return res.status(400).json({ message: 'Invalid order data' });
+    }
+
+    // Prepare orders to save
+    const ordersToSave = orderData.map(order => ({
+      userId: userId, // Associate with the userId
+      orderData: order, // The dynamic order data from the CSV
+      createdAt: new Date()
+    }));
+
+    // Insert orders in bulk to the database
+    try {
+      await Order.insertMany(ordersToSave);
+    } catch (dbError) {
+      console.error('Database error during insertion:', dbError);
+      return res.status(500).json({ message: 'Failed to save orders', error: 'Database error' });
+    }
+
+    res.status(201).json({ message: 'Orders saved successfully' });
+  } catch (error) {
+    console.error('General error saving orders:', error);
+    res.status(500).json({ message: 'Failed to save orders', error: error.message });
+  }
+};
+
+
 const ForgotPasswordLink = async (req, res) => {};
 const ForgotPassword = async (req, res) => {};
 const ResetPassword = async (req, res) => {};
@@ -98,6 +141,7 @@ const ResetPassword = async (req, res) => {};
 module.exports = {
   Register,
   Login,
+  SaveOrders,
   ForgotPasswordLink,
   ForgotPassword,
   ResetPassword,

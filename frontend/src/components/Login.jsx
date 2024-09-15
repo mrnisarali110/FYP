@@ -32,8 +32,12 @@ function Login() {
                 .then(response => {
                     if (response.status === 200) {
                         // If the response status is 200 (OK), treat it as successful login
+                        const token = response.data.token; // Assuming the token is returned in response.data.token
+                        localStorage.setItem('token', token); // Store token in localStorage
                         console.log('Login successful:', response.data);
                         setLoginStatus('Login Successful!'); // Update login status on success
+
+                        // Optionally redirect or perform other actions
                     } else {
                         // Handle unexpected success responses (though this should not happen)
                         setLoginStatus('Unexpected response from the server.');

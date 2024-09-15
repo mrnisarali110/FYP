@@ -147,35 +147,60 @@ const FileUpload = () => {
 
   const handleGenerateLabel = async () => {
     console.log('Preparing to send data:', editableData);
-  
+
     // Prepare the data to send to the server
     const dataToSend = Object.values(editableData).flat();
-  
-    try {
-      // Send data to the backend
-      const response = await fetch('http://localhost:3001/generate-labels', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dataToSend),
-      });
-  
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-  
-      // Assuming the server responds with a single PDF URL
-      const { url } = await response.json();
-  
-      // Open the PDF in a new tab
-      window.open(url, '_blank');
-    } catch (error) {
-      console.error('Error generating labels:', error);
-      alert('Failed to generate labels. Please try again.');
-    }
-  };
+    const token = localStorage.getItem('token'); // Get the token from local storage
 
+    if (!token) {
+        alert('You must be logged in to generate labels.');
+        return;
+    }
+
+    try {
+        // First, save the orders in the backend
+        const saveOrdersResponse = await fetch('http://localhost:3001/auth/save-orders', { // Updated path
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`, // Include token in the request header
+            },
+            body: JSON.stringify({ orders: dataToSend }), // Send the orders in the request body
+        });
+
+        if (!saveOrdersResponse.ok) {
+            throw new Error('Failed to save orders');
+        }
+
+        console.log('Orders saved successfully');
+
+        // Now proceed to generate the labels
+        const generateLabelsResponse = await fetch('http://localhost:3001/generate-labels', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`, // Include token in the request header
+            },
+            body: JSON.stringify(dataToSend), // Send the same data for label generation
+        });
+
+        if (!generateLabelsResponse.ok) {
+            throw new Error('Failed to generate labels');
+        }
+
+        // Assuming the server responds with a single PDF URL
+        const { url } = await generateLabelsResponse.json();
+
+        // Open the PDF in a new tab
+        window.open(url, '_blank');
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Failed to save orders or generate labels. Please try again.');
+    }
+};
+
+
+  
   return (
     <div>
       <input type="file" accept=".csv" onChange={handleFileChange} />
