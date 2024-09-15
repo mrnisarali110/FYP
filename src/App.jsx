@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Signup from './components/Signup';
-import Login from './components/Login';
+//import Signup from './components/Signup';
+//import Login from './components/Login';
 import FileUpload from './FileUpload';
 import Profile from './components/Profile';
 import Business from './components/Business';
@@ -35,7 +35,6 @@ function App() {
                         </ul>
                     </nav>
                 </header>
-
                 <Routes>
                     <Route path="/home" element={<Home />} />
                     <Route path="/signup" element={<Signup />} />
@@ -50,4 +49,3 @@ function App() {
 }
 
 export default App;
-    
