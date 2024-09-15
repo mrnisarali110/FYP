@@ -14,7 +14,20 @@ const FileUpload = () => {
     console.log('Parsed Data:', parsedData);
     console.log('Editable Data:', editableData);
   }, [parsedData, editableData]);
-
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      if (Object.keys(editableData).length > 0) {
+        event.preventDefault();
+        event.returnValue = 'You have unsaved changes. Are you sure you want to leave this page?';
+      }
+    };
+  
+    window.addEventListener('beforeunload', handleBeforeUnload);
+  
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [editableData]);
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile && selectedFile.type === 'text/csv') {
