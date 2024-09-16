@@ -1,0 +1,23 @@
+.faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .card-header {
+    cursor: pointer;
+  }
+  
+  .btn-block {
+    width: 100%;
+  }
+  
+  .bi-chevron-down,
+  .bi-chevron-up {
+    transition: transform 0.2s ease;
+  }
+  
+  .accordion .card-body {
+    background-color: #f9f9f9;
+  }
+  
+  
