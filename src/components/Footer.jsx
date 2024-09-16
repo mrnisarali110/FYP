@@ -64,13 +64,7 @@ const Footer = () => {
         </div>
 
         <div className="row mt-4">
-          {/* Return & Refund Policy */}
-          <div className="col-md-3 text-left">
-            <h5>Return & Refund Policy</h5>
-            <p>
-              <a href="/ReturnRefund" className="text-white">Learn about our Return & Refund Policy</a> for details on returning items.
-            </p>
-          </div>
+         
 
           {/* Customer Support */}
           <div className="col-md-3 text-center">
@@ -89,8 +83,7 @@ const Footer = () => {
             <ul className="list-unstyled">
               <li><a href="/privacy-security" className="text-white">Privacy and Security</a></li>
               <li><a href="/Faq" className="text-white">Terms & Conditions</a></li>
-              <li><a href="/shipping-policy" className="text-white">Shipping Policy</a></li>
-              <li><a href="/ReturnRefund" className="text-white">Return & Refund Policy</a></li>
+              <li><a href="/ReturnRefund" className="text-white">Shipping Policy</a></li>
             </ul>
           </div>
 

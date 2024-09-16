@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
 //import ManualForm from './components/ManualForm';
-import ReturnsRefunds from './components/ReturnsRefunds';
+import ShippingPolicy from './components/ShippingPolicy';
 import './App.css';
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/ContactUs" element={<ContactUs />} />
-          <Route path="/ReturnRefund" element={<ReturnsRefunds/>} />
+          <Route path="/ReturnRefund" element={<ShippingPolicy/>} />
 
           <Route path="/privacy-security" element={<PrivacySecurity />} />
         </Routes>
