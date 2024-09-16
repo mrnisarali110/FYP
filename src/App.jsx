@@ -9,6 +9,7 @@ import PrivacySecurity from './components/PrivacySecurity';
 import Footer from './components/Footer';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
+//import ManualForm from './components/ManualForm';
 import ReturnsRefunds from './components/ReturnsRefunds';
 import './App.css';
 
@@ -26,6 +27,7 @@ function App() {
             <li><Link to="/FileUpload">FileUpload</Link></li>
             <li><Link to="/tracking">Track Your Order</Link></li>
             <li><Link to="/about">About Us</Link></li>
+
 
           </ul>
         </nav>
@@ -49,6 +51,7 @@ function App() {
           <Route path="/privacy-security" element={<PrivacySecurity />} />
         </Routes>
         <Footer />
+
       </div>
     </Router>
   );

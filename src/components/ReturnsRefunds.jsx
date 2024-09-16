@@ -7,7 +7,7 @@ const ReturnsRefunds = () => {
       <p>Last updated: [Insert Date]</p>
 
       <p>
-        Thank you for shopping at [Your Company Name].
+        Thank you for shopping at [ELMS].
       </p>
 
       <p>

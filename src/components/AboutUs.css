@@ -83,3 +83,7 @@ i.bi-check-circle {
 ul.list-unstyled li {
     margin-bottom: 10px;
 }
+.color-bar {
+    background-color: #e6b868; /* Example: custom orange color */
+}
+
