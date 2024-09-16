@@ -46,7 +46,7 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/ContactUs" element={<ContactUs />} />
-          <Route path="/ReturnsRefunds" component={<ReturnsRefunds/>} />
+          <Route path="/ReturnRefund" element={<ReturnsRefunds/>} />
 
           <Route path="/privacy-security" element={<PrivacySecurity />} />
         </Routes>

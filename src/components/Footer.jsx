@@ -68,7 +68,7 @@ const Footer = () => {
           <div className="col-md-3 text-left">
             <h5>Return & Refund Policy</h5>
             <p>
-              <a href="/ReturnsRefunds" className="text-white">Learn about our Return & Refund Policy</a> for details on returning items.
+              <a href="/ReturnRefund" className="text-white">Learn about our Return & Refund Policy</a> for details on returning items.
             </p>
           </div>
 
@@ -79,7 +79,7 @@ const Footer = () => {
             <ul className="list-unstyled">
               <li>Email: <a href="mailto:support@elms.com" className="text-white">support@elms.com</a></li>
               <li>Phone: +92-310-2108779</li>
-              <li><a href="/contact-us" className="text-white">Contact Us</a></li>
+              <li><a href="/ContactUs" className="text-white">Contact Us</a></li>
             </ul>
           </div>
 
@@ -90,7 +90,7 @@ const Footer = () => {
               <li><a href="/privacy-security" className="text-white">Privacy and Security</a></li>
               <li><a href="/Faq" className="text-white">Terms & Conditions</a></li>
               <li><a href="/shipping-policy" className="text-white">Shipping Policy</a></li>
-              <li><a href="/ReturnsRefunds" className="text-white">Return & Refund Policy</a></li>
+              <li><a href="/ReturnRefund" className="text-white">Return & Refund Policy</a></li>
             </ul>
           </div>
 
