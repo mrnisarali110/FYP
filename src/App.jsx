@@ -15,11 +15,22 @@ import Profile from './components/Profile';
 import Business from './components/Business';
 import Home from './components/Home';
 
+
 import './App.css';
 import logisticsLogo from './assets/image/logisticsLogo.png';  // Add your logo here
 
 function App() {
+    // useEffect(() => {
+    //     const tawkScript = document.createElement('script');
+    //     tawkScript.src = 'https://embed.tawk.to/YOUR_PROPERTY_ID/default';
+    //     tawkScript.async = true;
+    //     tawkScript.charset = 'UTF-8';
+    //     tawkScript.setAttribute('crossorigin', '*');
+    //     document.body.appendChild(tawkScript);
+    //   }, []);
+    
     return (
+        
         <Router>
             <div>
                 {/* Header 1: Website Name and Logo */}
@@ -66,6 +77,7 @@ function App() {
                 <Footer />
             </div>
         </Router>
+        
     );
 }
 

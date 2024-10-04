@@ -61,22 +61,33 @@ function Login() {
     };
 
     return (
-        <div>
-            <h2></h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-                    {errors.email && <div style={{ color: 'red' }}>{errors.email}</div>}
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-                    {errors.password && <div style={{ color: 'red' }}>{errors.password}</div>}
-                </div>
-                <button type="submit">Login</button>
-            </form>
-        </div>
+        <form className="login-form" onSubmit={handleSubmit}>
+            <div>
+                <label>Email:</label>
+                <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Enter your email"
+                    required
+                />
+                {errors.email && <div className="error">{errors.email}</div>}
+            </div>
+            <div>
+                <label>Password:</label>
+                <input
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    placeholder="Enter your password"
+                    required
+                />
+                {errors.password && <div className="error">{errors.password}</div>}
+            </div>
+            <button className="btn btn-primary" type="submit">Login</button>
+        </form>
     );
 }
 
