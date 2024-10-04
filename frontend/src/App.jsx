@@ -4,6 +4,10 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import FileUpload from "./components/FileUpload";
+import UserOrders from "./components/UserOrders";
+import AdminDashboard from "./components/AdminDashboard";
+import OrdersDashboard from  "./components/OrdersDashboard";
+
 import "./App.css";
 
 function App() {
@@ -26,6 +30,17 @@ function App() {
             <li>
               <Link to="/FileUpload">FileUpload</Link>
             </li>
+            <li>
+              <Link to="/UserOrders">Fetch Order</Link>
+            </li>
+            <li>
+              <Link to="/AdminDashboard">AdminDashboard</Link>
+              
+            </li>
+            <li>
+              <Link to="/OrdersDashboard">OrdersDashboard</Link>
+              
+            </li>
           </ul>
         </nav>
         <Routes>
@@ -40,9 +55,15 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/FileUpload" element={<FileUpload />} />
+          <Route path="/UserOrders" element={<UserOrders />} />
+          <Route path="/AdminDashboard" element={<AdminDashboard />} />
+          <Route path="/OrdersDashboard" element={<OrdersDashboard />} />
+
+
         </Routes>
       </div>
     </Router>
   );
 }
+
 export default App;

@@ -4,6 +4,7 @@ const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
+
 const qr = require('qr-image');  // Import the qr-image package okok
 
 const authRoutes = require("./routers/auth.routers");
@@ -25,6 +26,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
   credentials: true // If you are using cookies or credentials, enable this
 }));
+// Admin routes
 
 // APIs Router Register here.
 app.use("/auth", authRoutes);

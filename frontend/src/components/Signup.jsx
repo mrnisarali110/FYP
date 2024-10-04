@@ -68,7 +68,8 @@ function Signup() {
         break;
       case "password":
         if (value.length < 8) {
-          error = "Password must be at least 8 characters long";
+          error = "Password must be at least 8 chars, with: A, a, 0-9, and @!";
+
         }
         break;
       case "confirmPassword":
@@ -209,6 +210,7 @@ function Signup() {
         </div>
         <div>
           <label>Password:</label>
+           
           <input
             type="password"
             name="password"

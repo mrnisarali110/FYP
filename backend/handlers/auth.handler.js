@@ -1,8 +1,9 @@
 const ExpressJoiValidation = require("express-joi-validation");
 const Joi = require("joi");
 const User = require("../schema/user");
-const Order = require("../schema/order");
+const Order = require("../schema/order.model");
 const userRegistrationSchema = require("../validations/registration");
+
 
 //register user
 const Register = async (req, res) => {
@@ -90,8 +91,6 @@ const Login = async (req, res) => {
   res.status(200).json({ token, message: "User logged in successfully" });
 };
 
-
-
 //save order in DB
 const SaveOrders = async (req, res) => {
   try {
@@ -128,13 +127,79 @@ const SaveOrders = async (req, res) => {
 
     res.status(201).json({ message: 'Orders saved successfully' });
   } catch (error) {
-    console.error('General error saving orders:', error);
+    console.error('Error saving orders:', error);
     res.status(500).json({ message: 'Failed to save orders', error: error.message });
   }
 };
 
+// Fetch orders from DB for the logged-in user
+const getOrders = async (req, res) => {
+  try {
+    // Extract userId from the authenticated request (from JWT)
+    const userId = req.user.id;
 
-const ForgotPasswordLink = async (req, res) => {};
+    // Fetch orders associated with the user
+    const userOrders = await Order.find({ userId: userId });
+
+    // If no orders found, return an empty array
+    if (!userOrders || userOrders.length === 0) {
+      return res.status(404).json({ message: 'No orders found for this user' });
+    }
+
+    // Return the orders
+    res.status(200).json({ orders: userOrders });
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+    res.status(500).json({ message: 'Failed to fetch orders', error: error.message });
+  }
+};
+
+// Get all users
+const getAllUsers = async (req, res) => {
+  try {
+    // Check if the logged-in user is an admin
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Access denied. Admins only.' });
+    }
+
+    // Fetch all users
+    const users = await User.find();
+    
+    // If no users are found, return an empty array
+    if (!users || users.length === 0) {
+      return res.status(404).json({ message: 'No users found', users: [] });
+    }
+
+    // Return all users
+    res.status(200).json({ users });
+  } catch (error) {
+    console.error('Error fetching all users:', error);
+    res.status(500).json({ message: 'Failed to fetch all users', error: error.message });
+  }
+};
+
+// Fetch all orders (Admin-only)
+const getAllOrders = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Access denied: Admins only.' });
+    }
+    
+    const orders = await Order.find();
+
+    // If no orders found, return an empty array
+    if (!orders || orders.length === 0) {
+      return res.status(404).json({ message: 'No orders found', orders: [] });
+    }
+
+    // Return orders
+    res.status(200).json({ orders });
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+    res.status(500).json({ message: 'Error fetching orders', error: error.message });
+  }
+};
+//const ForgotPasswordLink = async (req, res) => {};
 const ForgotPassword = async (req, res) => {};
 const ResetPassword = async (req, res) => {};
 
@@ -142,7 +207,9 @@ module.exports = {
   Register,
   Login,
   SaveOrders,
-  ForgotPasswordLink,
   ForgotPassword,
   ResetPassword,
+  getOrders,
+  getAllUsers,
+  getAllOrders,
 };

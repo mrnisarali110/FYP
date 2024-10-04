@@ -11,7 +11,12 @@ const userSchema = new mongoose.Schema({
   storeUrl: String,
   phone: String,
   cnic: String,
-  userId: { type: mongoose.Schema.Types.ObjectId, unique: true, default: () => new mongoose.Types.ObjectId() }
+  userId: { type: mongoose.Schema.Types.ObjectId, unique: true, default: () => new mongoose.Types.ObjectId() },
+  role: {
+    type: String,
+    enum: ['user', 'admin'], // Adding role field
+    default: 'user' // Default role is user
+  }
 });
 
 // Hash password before saving
@@ -34,12 +39,22 @@ userSchema.methods.generateToken = function () {
     throw new Error('Secret key not defined in environment variables');
   }
 
-  const token = jwt.sign({ id: this.userId, email: this.email }, secretKey, {
+  const token = jwt.sign({ id: this.userId, email: this.email, role: this.role }, secretKey, { // Include role in token
     expiresIn: '1h', // Token expiration time
   });
 
   return token;
 };
+
+//new
+userSchema.methods.generateToken = function () {
+const secretKey = process.env.SECRET_KEY;
+const token = jwt.sign({ id: this.userId, email: this.email, role: this.role }, secretKey, {
+  expiresIn: '1h',
+});
+return token;
+};
+
 
 const User = mongoose.model("User", userSchema);
 
