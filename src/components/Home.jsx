@@ -70,7 +70,7 @@ const Home = () => {
           <Card className="shadow-sm h-100 border-primary">
             <Card.Img variant="top" src={bulkImage} alt="Service 3" />
             <Card.Body>
-              <Card.Text className="text-dark">Bulk Ordering</Card.Text>
+              <Card.Text className="text-dark">Bulk Ordering.</Card.Text>
             </Card.Body>
           </Card>
         </div>
