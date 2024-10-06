@@ -1,0 +1,15 @@
+.privacy-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .privacy-container h4 {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  .privacy-container p {
+    margin-top: 10px;
+  }
+  
