@@ -14,11 +14,25 @@ import ShippingPolicy from './components/ShippingPolicy';
 import Profile from './components/Profile';
 import Business from './components/Business';
 import Home from './components/Home';
+
+
 import './App.css';
 import logisticsLogo from './assets/image/logisticsLogo.png';  // Add your logo here
+<<<<<<< HEAD
 import OrderPackaging from './components/OrderPackaging';
+=======
+>>>>>>> main
 
 function App() {
+    // useEffect(() => {
+    //     const tawkScript = document.createElement('script');
+    //     tawkScript.src = 'https://embed.tawk.to/YOUR_PROPERTY_ID/default';
+    //     tawkScript.async = true;
+    //     tawkScript.charset = 'UTF-8';
+    //     tawkScript.setAttribute('crossorigin', '*');
+    //     document.body.appendChild(tawkScript);
+    //   }, []);
+    
     return (
         
         <Router>
@@ -41,7 +55,10 @@ function App() {
                             <li><Link to="/login">Login</Link></li>
                             <li><Link to="/FileUpload">FileUpload</Link></li>
                             <li><Link to="/profile">Profile</Link></li>
+<<<<<<< HEAD
                             <li><Link to="/orderpackaging">Order packaging</Link></li>
+=======
+>>>>>>> main
                             <li><Link to="/tracking">Track Your Order</Link></li>
                             <li><Link to="/about">About Us</Link></li>
                         </ul>
@@ -61,7 +78,10 @@ function App() {
                     <Route path="/faq" element={<Faq />} />
                     <Route path="/ContactUs" element={<ContactUs />} />
                     <Route path="/ReturnRefund" element={<ShippingPolicy />} />
+<<<<<<< HEAD
                     <Route path="/OrderPackaging" element={<OrderPackaging />} />
+=======
+>>>>>>> main
                     <Route path="/privacy-security" element={<PrivacySecurity />} />
                 </Routes>
 

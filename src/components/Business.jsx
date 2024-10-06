@@ -15,75 +15,76 @@ const Business = () => {
   return (
     <div>
       <Container className="business-container">
-        <Typography variant="h3" className="business-title">
-          Our Business and Services
-        </Typography>
-        <Grid container spacing={4} className="business-grid">
-          <Grid item xs={12} md={4}>
-            <Paper className="services-paper" elevation={3}>
-              <img src={cityImage} alt="Intercity Delivery" className="business-image" />
-              <Typography variant="h5" className="business-subtitle">
-                INTERCITY DELIVERY
-              </Typography>
-              <Typography variant="body1" className="business-description">
-                Intercity delivery involves transporting goods between different cities and is crucial for businesses with multi-location operations.
-              </Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Paper className="services-paper" elevation={3}>
-              <img src={paymentImage} alt="Secure Packaging" className="business-image" />
-              <Typography variant="h5" className="business-subtitle">
-                FAST PAYMENT PROCESSING
-              </Typography>
-              <Typography variant="body1" className="business-description">
-              Fast payment processing in logistics is essential for streamlining financial transactions between clients, suppliers, and service providers. By enabling real-time or near-instantaneous payment settlements        </Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Paper className="services-paper" elevation={3}>
-              <img src={customerImage} alt="Return Policy" className="business-image" />
-              <Typography variant="h5" className="business-subtitle">
-                CUSTOMER SUPPORT
-              </Typography>
-              <Typography variant="body1" className="business-description">
-                Secure delivery focuses on ensuring safe and reliable transportation of goods from sender to recipient.
-              </Typography>
-            </Paper>
-          </Grid>
+      <Typography variant="h3" className="business-title">
+        Our Business and Services
+      </Typography>
+      <Grid container spacing={4} className="business-grid">
+        <Grid item xs={12} md={4}>
+          <Paper className="services-paper" elevation={3}>
+            <img src={cityImage} alt="Intercity Delivery" className="business-image" />
+            <Typography variant="h5" className="business-subtitle">
+              INTERCITY DELIVERY
+            </Typography>
+            <Typography variant="body1" className="business-description">
+              Intercity delivery involves transporting goods between different cities and is crucial for businesses with multi-location operations.
+            </Typography>
+          </Paper>
         </Grid>
-      </Container>
+        <Grid item xs={12} md={4}>
+          <Paper className="services-paper" elevation={3}>
+            <img src={paymentImage} alt="Fast Payment Processing" className="business-image" />
+            <Typography variant="h5" className="business-subtitle">
+              FAST PAYMENT PROCESSING
+            </Typography>
+            <Typography variant="body1" className="business-description">
+              Fast payment processing in logistics is essential for streamlining financial transactions between clients, suppliers, and service providers. By enabling real-time or near-instantaneous payment settlements.
+            </Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Paper className="services-paper" elevation={3}>
+            <img src={customerImage} alt="Customer Support" className="business-image" />
+            <Typography variant="h5" className="business-subtitle">
+              CUSTOMER SUPPORT
+            </Typography>
+            <Typography variant="body1" className="business-description">
+              Secure delivery focuses on ensuring safe and reliable transportation of goods from sender to recipient.
+            </Typography>
+          </Paper>
+        </Grid>
+      </Grid>
+    </Container>
 
       {/* New Section for Additional Logistics Information */}
       <Container className="logistics-info-container">
-        <Typography variant="h4" className="logistics-title">
-          ELMS Logistics Solutions
-        </Typography>
-        <Grid container spacing={4} className="logistics-grid">
-          <Grid item xs={12} md={6}>
-            <Paper className="logistics-paper" elevation={3}>
-              <img src={globalImage} alt="Global Logistics" className="logistics-image" />
-              <Typography variant="h5" className="logistics-subtitle">
-                INTEGRATION WITH E-COMMERCE PLATFORM
-              </Typography>
-              <Typography variant="body1" className="logistics-description">
-                Our global logistics network allows us to deliver goods worldwide with efficiency and reliability.
-              </Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Paper className="logistics-paper" elevation={3}>
-              <img src={warehouseImage} alt="Warehouse Management" className="logistics-image" />
-              <Typography variant="h5" className="logistics-subtitle">
-                 BULK ORDERING
-              </Typography>
-              <Typography variant="body1" className="logistics-description">
-                Our warehouse facilities store your products securely and efficiently with optimized storage solutions.
-              </Typography>
-            </Paper>
-          </Grid>
+      <Typography variant="h4" className="logistics-title">
+        ELMS Logistics Solutions
+      </Typography>
+      <Grid container spacing={4} className="logistics-grid">
+        <Grid item xs={12} md={6}>
+          <Paper className="logistics-paper" elevation={3}>
+            <img src={globalImage} alt="Global Logistics" className="logistics-image" />
+            <Typography variant="h5" className="logistics-subtitle">
+              INTEGRATION WITH E-COMMERCE PLATFORM
+            </Typography>
+            <Typography variant="body1" className="logistics-description">
+              Our global logistics network allows us to deliver goods worldwide with efficiency and reliability.
+            </Typography>
+          </Paper>
         </Grid>
-      </Container>
+        <Grid item xs={12} md={6}>
+          <Paper className="logistics-paper" elevation={3}>
+            <img src={warehouseImage} alt="Warehouse Management" className="logistics-image" />
+            <Typography variant="h5" className="logistics-subtitle">
+              BULK ORDERING
+            </Typography>
+            <Typography variant="body1" className="logistics-description">
+              Our warehouse facilities store your products securely and efficiently with optimized storage solutions.
+            </Typography>
+          </Paper>
+        </Grid>
+      </Grid>
+    </Container>
       {/* Work with Us Banner Section */}
 <div className="work-with-us-banner">
   <Container>

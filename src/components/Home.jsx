@@ -9,13 +9,46 @@ import labelGenerationImage from '../assets/image/labelGeneration.jpg';
 import trackingImage from '../assets/image/tracking.png';
 import lowCostImage1 from '../assets/image/lowCost1.jpg'; // Add your own images
 import lowCostImage2 from '../assets/image/lowCost2.jpg'; // Add your own images
+import welcomeImage from '../assets/image/welcome.jpg'; // Replace with your images
+import logisticsImage from '../assets/image/logistics.jpg';
+import onlineBusinessImage from '../assets/image/onlineBusiness.jpg';
 import Fade from 'react-reveal/Fade'; // Import Fade animation
+import { Carousel } from 'react-bootstrap';
+import { motion } from 'framer-motion';
+
+
 
 
 const Home = () => {
   return (
+    
     <div className="home-container">
       <div className="about-background bg-light-blue py-5">
+      <Container className="slider-container mt-5">
+      <Carousel interval={3000}> {/* Set the interval to 3000 milliseconds (3 seconds) */}
+        <Carousel.Item>
+          <img className="d-block w-100 carousel-image" src={welcomeImage} alt="Welcome" />
+          <Carousel.Caption className="carousel-caption">
+            <h3>Welcome to Our Logistics Solutions</h3>
+            <p>Your trusted partner in delivering goods efficiently.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100 carousel-image" src={logisticsImage} alt="Logistics" />
+          <Carousel.Caption className="carousel-caption">
+            <h3>About Our Logistics</h3>
+            <p>Streamlining your shipping processes for a better experience.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100 carousel-image" src={onlineBusinessImage} alt="Online Business" />
+          <Carousel.Caption className="carousel-caption">
+            <h3>Embracing Online Business</h3>
+            <p>How the world is adapting to e-commerce and logistics.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+    </Container>
         <Container>
           <div className="about-content text-center">
             {/* Existing content */}
@@ -44,27 +77,24 @@ const Home = () => {
               In logistics, the aim is to create an efficient and reliable supply chain that minimizes costs and maximizes customer satisfaction.
             </p>
 
-            <Row className="about-grid text-dark mb-5 animate-on-scroll">
-      <Col md={4} className="mb-4">
-        <div className="custom-card">
-          <Card className="shadow-sm h-100 border-primary">
-            <Card.Img variant="top" src={courierImage} alt="Service 1" />
-            <Card.Body>
-              <Card.Text className="text-dark">Commitment with Courier Companies</Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
+            <Row className="about-grid text-dark mb-5 justify-content-center animate-on-scroll">
+      <Col md={4} className="mb-4 d-flex align-items-stretch">
+        <Card className="custom-card shadow-sm border-primary w-100">
+          <Card.Img variant="top" src={courierImage} alt="Service 1" />
+          <Card.Body>
+            <Card.Text className="text-dark">Commitment with Courier Companies</Card.Text>
+          </Card.Body>
+        </Card>
       </Col>
-      <Col md={4} className="mb-4">
-        <div className="custom-card">
-          <Card className="shadow-sm h-100 border-primary">
-            <Card.Img variant="top" src={deliveryImage} alt="Service 2" />
-            <Card.Body>
-              <Card.Text className="text-dark">Real-time Tracking</Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
+      <Col md={4} className="mb-4 d-flex align-items-stretch">
+        <Card className="custom-card shadow-sm border-primary w-100">
+          <Card.Img variant="top" src={deliveryImage} alt="Service 2" />
+          <Card.Body>
+            <Card.Text className="text-dark">Real-time Tracking</Card.Text>
+          </Card.Body>
+        </Card>
       </Col>
+<<<<<<< HEAD
       <Col md={4} className="mb-4">
         <div className="custom-card">
           <Card className="shadow-sm h-100 border-primary">
@@ -74,6 +104,15 @@ const Home = () => {
             </Card.Body>
           </Card>
         </div>
+=======
+      <Col md={4} className="mb-4 d-flex align-items-stretch">
+        <Card className="custom-card shadow-sm border-primary w-100">
+          <Card.Img variant="top" src={bulkImage} alt="Service 3" />
+          <Card.Body>
+            <Card.Text className="text-dark">Bulk Ordering</Card.Text>
+          </Card.Body>
+        </Card>
+>>>>>>> main
       </Col>
     </Row>
 
@@ -117,44 +156,44 @@ const Home = () => {
 
             {/* New Section: Low Shipping Cost */}
             <div className="home-container">
-      <div className="about-background bg-light-blue py-5">
-        <Container>
-          <div className="about-content text-center">
-            {/* Existing content */}
+              <div className="about-background bg-light-blue py-5">
+                <Container>
+                  <div className="about-content text-center">
+                    {/* Existing content */}
 
-            {/* New Section: Low Shipping Cost with Fade Animation */}
-            <Fade bottom> {/* Animate the whole section */}
-              <div className="low-cost-container py-5">
-                <h4 className="main-heading mb-4 text-dark">Fall into Easier Shipping at Minimal Rates</h4>
-                <Row className="mb-4">
-                  <Col md={6} className="mb-4">
-                    <p className="text-dark">
-                      Discover our competitive shipping rates designed to offer you the best value for your money. Our streamlined logistics processes ensure that you get efficient shipping solutions without compromising on quality.
-                    </p>
-                    <p className="text-dark">
-                      By leveraging advanced technology and strategic partnerships, we provide cost-effective shipping options tailored to meet your needs. Enjoy lower shipping costs and improved service quality with our expert logistics solutions.
-                    </p>
-                  </Col>
-                  <Col md={6} className="mb-4">
-                    <img src={lowCostImage1} alt="Low Shipping Cost 1" className="img-fluid shadow-sm rounded" />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md={6} className="mb-4">
-                    <img src={lowCostImage2} alt="Low Shipping Cost 2" className="img-fluid shadow-sm rounded" />
-                  </Col>
-                  <Col md={6} className="mb-4">
-                    <p className="text-dark">
-                      Our bulk shipping discounts offer substantial savings for high-volume shipments. Partner with us to benefit from reduced rates and enhanced shipping efficiency, all while maintaining high standards of service.
-                    </p>
-                  </Col>
-                </Row>
+                    {/* New Section: Low Shipping Cost with Fade Animation */}
+                    <Fade bottom> {/* Animate the whole section */}
+                      <div className="low-cost-container py-5">
+                        <h4 className="main-heading mb-4 text-dark">Fall into Easier Shipping at Minimal Rates</h4>
+                        <Row className="mb-4">
+                          <Col md={6} className="mb-4">
+                            <p className="text-dark">
+                              Discover our competitive shipping rates designed to offer you the best value for your money. Our streamlined logistics processes ensure that you get efficient shipping solutions without compromising on quality.
+                            </p>
+                            <p className="text-dark">
+                              By leveraging advanced technology and strategic partnerships, we provide cost-effective shipping options tailored to meet your needs. Enjoy lower shipping costs and improved service quality with our expert logistics solutions.
+                            </p>
+                          </Col>
+                          <Col md={6} className="mb-4">
+                            <img src={lowCostImage1} alt="Low Shipping Cost 1" className="img-fluid shadow-sm rounded" />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md={6} className="mb-4">
+                            <img src={lowCostImage2} alt="Low Shipping Cost 2" className="img-fluid shadow-sm rounded" />
+                          </Col>
+                          <Col md={6} className="mb-4">
+                            <p className="text-dark">
+                              Our bulk shipping discounts offer substantial savings for high-volume shipments. Partner with us to benefit from reduced rates and enhanced shipping efficiency, all while maintaining high standards of service.
+                            </p>
+                          </Col>
+                        </Row>
+                      </div>
+                    </Fade>
+                  </div>
+                </Container>
               </div>
-            </Fade>
-          </div>
-        </Container>
-      </div>
-    </div>
+            </div>
           </div>
         </Container>
       </div>

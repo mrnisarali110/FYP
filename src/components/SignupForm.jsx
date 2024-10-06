@@ -33,23 +33,50 @@ const SignupForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="signup-form" onSubmit={handleSubmit}>
       <label htmlFor="name">Name:</label>
-      <input type="text" id="name" value={name} onChange={handleInputChange} />
+      <input
+        type="text"
+        id="name"
+        value={name}
+        onChange={handleInputChange}
+        placeholder="Enter your name"
+        required
+      />
 
       <label htmlFor="email">Email:</label>
-      <input type="email" id="email" value={email} onChange={handleInputChange} />
+      <input
+        type="email"
+        id="email"
+        value={email}
+        onChange={handleInputChange}
+        placeholder="Enter your email"
+        required
+      />
 
       <label htmlFor="password">Password:</label>
-      <input type="password" id="password" value={password} onChange={handleInputChange} />
+      <input
+        type="password"
+        id="password"
+        value={password}
+        onChange={handleInputChange}
+        placeholder="Enter your password"
+        required
+      />
 
       <label htmlFor="confirmPassword">Confirm Password:</label>
-      <input type="password" id="confirmPassword" value={confirmPassword} onChange={handleInputChange} />
+      <input
+        type="password"
+        id="confirmPassword"
+        value={confirmPassword}
+        onChange={handleInputChange}
+        placeholder="Confirm your password"
+        required
+      />
 
-      <button className='btn btn-primary' type="submit">Sign Up</button>
+      <button className="btn btn-primary" type="submit">Sign Up</button>
     </form>
   );
 };
 
 export default SignupForm;
-

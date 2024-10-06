@@ -91,52 +91,51 @@ function Signup() {
             return;
         }
         console.log('Form data submitted:', formData);
-        
     };
 
     return (
-        <div>
-            <h2></h2>
+        <div className="signup-container">
+            <h2>Signup</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Name:</label>
                     <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-                    {errors.name && <span style={{ color: 'red' }}>{errors.name}</span>}
+                    {errors.name && <span>{errors.name}</span>}
                 </div>
                 <div>
                     <label>Email:</label>
                     <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-                    {errors.email && <span style={{ color: 'red' }}>{errors.email}</span>}
+                    {errors.email && <span>{errors.email}</span>}
                 </div>
                 <div>
                     <label>Phone:</label>
                     <input type="text" name="phone" value={formData.phone} onChange={handleChange} required />
-                    {errors.phone && <span style={{ color: 'red' }}>{errors.phone}</span>}
+                    {errors.phone && <span>{errors.phone}</span>}
                 </div>
                 <div>
                     <label>CNIC No:</label>
                     <input type="text" name="cnic" value={formData.cnic} onChange={handleChange} required />
-                    {errors.cnic && <span style={{ color: 'red' }}>{errors.cnic}</span>}
+                    {errors.cnic && <span>{errors.cnic}</span>}
                 </div>
                 <div>
                     <label>Store Name:</label>
                     <input type="text" name="storeName" value={formData.storeName} onChange={handleChange} required />
-                    {errors.storeName && <span style={{ color: 'red' }}>{errors.storeName}</span>}
+                    {errors.storeName && <span>{errors.storeName}</span>}
                 </div>
                 <div>
                     <label>Store URL:</label>
                     <input type="url" name="storeUrl" value={formData.storeUrl} onChange={handleChange} required />
-                    {errors.storeUrl && <span style={{ color: 'red' }}>{errors.storeUrl}</span>}
+                    {errors.storeUrl && <span>{errors.storeUrl}</span>}
                 </div>
                 <div>
                     <label>Password:</label>
                     <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-                    {errors.password && <span style={{ color: 'red' }}>{errors.password}</span>}
+                    {errors.password && <span>{errors.password}</span>}
                 </div>
                 <div>
                     <label>Confirm Password:</label>
                     <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
-                    {errors.confirmPassword && <span style={{ color: 'red' }}>{errors.confirmPassword}</span>}
+                    {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
                 </div>
                 <button type="submit">Signup</button>
             </form>
@@ -145,4 +144,3 @@ function Signup() {
 }
 
 export default Signup;
-                    
