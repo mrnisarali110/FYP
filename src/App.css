@@ -23,7 +23,7 @@ nav ul {
   padding: 0;
   display: flex;
   justify-content: center;
-  background-color: #333;
+  background-color: #e06464;
 }
 
 nav ul li {
@@ -115,41 +115,60 @@ button:hover {
 }
 
 /* service.css */
+/* Container styling */
 .business-container {
-  padding: 50px 0;
+  padding: 40px 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Title styling */
 .business-title {
   text-align: center;
-  margin-bottom: 40px;
-  padding-bottom: 30px;
-  color: #0056b3; /* Blue shade */
+  margin-bottom: 30px;
+  color: #333;
 }
 
+/* Grid styling */
 .business-grid {
-  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
+/* Paper styling */
 .services-paper {
   padding: 20px;
   text-align: center;
+  border-radius: 10px;
+  transition: transform 0.2s;
 }
 
+.services-paper:hover {
+  transform: translateY(-5px);
+}
+
+/* Image styling */
 .business-image {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  height: auto;
+  border-radius: 10px;
 }
 
+/* Subtitle styling */
 .business-subtitle {
   margin-top: 15px;
-  color: #e67e22; /* Light orange */
+  font-weight: bold;
+  color: #007bff; /* Bootstrap primary color */
 }
 
+/* Description styling */
 .business-description {
   margin-top: 10px;
-  color: #333;
+  color: #555;
 }
+
 
 .logistics-info-container {
   margin-top: 50px;
@@ -203,24 +222,52 @@ button:hover {
 }
 /* shipping */
 /* Container Styling for Shipping Procedure */
+/* Container styling */
 .shipping-procedure-container {
-  background-color: #e0f7fa; /* Light blue color */
-  padding: 40px;
+  padding: 40px 20px;
+  background-color: #f9f9f9; /* Light background for contrast */
   border-radius: 8px;
-  margin-top: 50px; /* Adjust this to prevent overlap */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Title styling */
 .shipping-procedure-title {
   text-align: center;
-  font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  color: #333; /* Darker color for the title */
 }
 
-.shipping-procedure-description {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #333; /* Text color for readability */
+/* Grid styling */
+.shipping-procedure-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center align items */
 }
+
+/* Description styling */
+.shipping-procedure-description {
+  font-size: 1.1rem; /* Slightly larger text */
+  line-height: 1.6; /* Better line spacing */
+  color: #555; /* Soft dark color for readability */
+  padding: 20px; /* Add padding for better spacing */
+}
+
+/* Image styling */
+.shipping-procedure-image {
+  width: 100%; /* Full width of the grid item */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  margin-top: 20px; /* Spacing above the image */
+  animation: slideInFromTop 1.5s ease-out; /* Duration and timing */
+
+}
+/* profile adjusment */
+/* Ensures the profile container has enough space at the bottom */
+
+
+/* Ensures the footer stays at the bottom of the page */
+
 
 /* Animation for sliding in the image */
 @keyframes slideInFromTop {
@@ -233,16 +280,6 @@ button:hover {
     opacity: 1;
   }
 }
-
-/* Apply the animation to the image */
-.shipping-procedure-image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  animation: slideInFromTop 1.5s ease-out; /* Duration and timing */
-}
-
-
 /* Hover effect for the image */
 .shipping-procedure-image:hover {
   transform: scale(1.05); /* Slight zoom-in effect on hover */
@@ -280,12 +317,7 @@ button:hover {
   clear: both; /* Ensure no floating elements overlap */
 }
 
-/* Add padding and ensure no overlap for the Shipping Procedure section */
-.shipping-procedure-container {
-  padding-top: 60px; /* Adds space between the banner and this section */
-  padding-bottom: 60px; /* Adds space at the bottom for better structure */
-  clear: both; /* Prevent overlap due to floating elements */
-}
+
 
 
 
@@ -345,7 +377,7 @@ button:hover {
 }
 
 .card {
-  border: 1px solid #007bff; /* Border for cards */
+  border: 1px solid #78c712; /* Border for cards */
 }
 
 .shadow-sm {
@@ -397,7 +429,34 @@ button:hover {
   margin-bottom: 1.5rem !important;
 }
 
+/* 3 pictures home css */
 
+.about-grid {
+  text-align: center; /* Center text within the cards */
+}
+.custom-card {
+  transition: transform 0.3s ease; /* Add hover effect */
+}
+
+.custom-card:hover {
+  transform: scale(1.05); /* Slightly enlarge the card on hover */
+}
+
+.card-image {
+  height: 200px; /* Fixed height for uniformity */
+  object-fit: cover; /* Ensure the images cover the area */
+}
+
+.card {
+  background-color: #f9f9f9; /* Light background color for contrast */
+  border-radius: 8px; /* Rounded corners */
+}
+
+.card-text {
+  font-size: 1.1rem; /* Slightly larger text for better readability */
+  font-weight: bold; /* Bold text */
+  text-align: center; /* Center the text */
+}
 
 
 
@@ -550,7 +609,7 @@ button:hover {
 
 /* Header 2 */
 .header-2 {
-  background-color: #343a40;
+  background-color: #4f252a;
   padding: 10px;
 }
 
@@ -579,18 +638,7 @@ button:hover {
   border-radius: 4px;
 }
 /* profile csss */
-.profile-container {
-  max-width: 500px; /* Set the maximum width to 400px */
-  padding: 20px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  position: absolute; /* Use absolute positioning */
-  top: 50%; /* Vertically center */
-  left: 50%; /* Horizontally center */
-  transform: translate(-50%, -50%); /* Corrects the offset from top-left corner */
-}
+  
 
 
 .profile-title {
@@ -603,13 +651,6 @@ button:hover {
   margin-bottom: 20px;
 }
 
-.profile-picture {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-  object-fit: cover;
-}
 
 .profile-form .form-group {
   margin-bottom: 15px;
@@ -662,8 +703,264 @@ button:hover {
   font-family: 'Poppins', sans-serif;
 }
 
+.profile-container {
+  margin: 20px;
+}
+
+.profile-details {
+  margin-top: 20px;
+}
+/* General form styles */
+.signup-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 40px auto;
+  background-color: #f9f9f9;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.signup-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Label styles */
+.signup-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #444;
+}
+
+/* Input fields */
+.signup-container input[type="text"],
+.signup-container input[type="email"],
+.signup-container input[type="password"],
+.signup-container input[type="url"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.signup-container input[type="text"]:focus,
+.signup-container input[type="email"]:focus,
+.signup-container input[type="password"]:focus,
+.signup-container input[type="url"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Error message */
+.signup-container span {
+  color: red;
+  font-size: 14px;
+}
+
+/* Signup button */
+.signup-container button[type="submit"] {
+  width: 100%;
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.signup-container button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Mobile responsive */
 @media (max-width: 768px) {
-  .profile-container {
-      padding: 10px;
+  .signup-container {
+      padding: 20px;
   }
+
+  .signup-container h2 {
+      font-size: 24px;
+  }
+
+  .signup-container button[type="submit"] {
+      font-size: 16px;
+  }
+}
+/* signup form css */
+/* General form styling */
+.signup-form {
+  max-width: 500px;
+  margin: 50px auto;
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.signup-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+.signup-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.signup-form input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Button styling */
+.signup-form .btn-primary {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.signup-form .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .signup-form {
+      padding: 20px;
+      margin: 20px;
+  }
+
+  .signup-form label {
+      font-size: 14px;
+  }
+
+  .signup-form input {
+      font-size: 14px;
+  }
+
+  .signup-form .btn-primary {
+      font-size: 16px;
+  }
+}
+/* login css */
+/* General form styling */
+.login-form {
+  max-width: 400px;
+  margin: 50px auto;
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.login-form input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Error message styling */
+.login-form .error {
+  color: red;
+  font-size: 14px;
+  margin-top: -15px;
+  margin-bottom: 10px;
+}
+
+/* Button styling */
+.login-form .btn-primary {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.login-form .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .login-form {
+      padding: 20px;
+      margin: 20px;
+  }
+
+  .login-form label {
+      font-size: 14px;
+  }
+
+  .login-form input {
+      font-size: 14px;
+  }
+
+  .login-form .btn-primary {
+      font-size: 16px;
+  }
+}
+/* slider css */
+.slider-container {
+  max-width: 800px; /* Set a maximum width for the slider */
+  margin: 0 auto; /* Center the slider */
+  position: relative; /* To position the controls correctly */
+  border: 1px solid #ddd; /* Optional: Add a border for better visibility */
+  border-radius: 10px; /* Optional: Rounded corners */
+  overflow: hidden; /* To hide overflow content */
+}
+
+.carousel-item {
+  height: 400px; /* Set a fixed height for the slides */
+}
+
+.carousel-image {
+  width: 100%; /* Make image responsive */
+  height: 100%; /* Ensure it covers the height of the carousel */
+  object-fit: cover; /* Crop image to fill the container */
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #fff; /* White text for contrast */
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  padding: 10px; /* Some padding for the text */
+  border-radius: 5px; /* Rounded corners for caption */
 }
