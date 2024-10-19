@@ -18,6 +18,10 @@ import Home from './components/Home';
 
 import './App.css';
 import logisticsLogo from './assets/image/logisticsLogo.png';  // Add your logo here
+<<<<<<< HEAD
+import OrderPackaging from './components/OrderPackaging';
+=======
+>>>>>>> main
 
 function App() {
     // useEffect(() => {
@@ -51,6 +55,10 @@ function App() {
                             <li><Link to="/login">Login</Link></li>
                             <li><Link to="/FileUpload">FileUpload</Link></li>
                             <li><Link to="/profile">Profile</Link></li>
+<<<<<<< HEAD
+                            <li><Link to="/orderpackaging">Order packaging</Link></li>
+=======
+>>>>>>> main
                             <li><Link to="/tracking">Track Your Order</Link></li>
                             <li><Link to="/about">About Us</Link></li>
                         </ul>
@@ -70,6 +78,10 @@ function App() {
                     <Route path="/faq" element={<Faq />} />
                     <Route path="/ContactUs" element={<ContactUs />} />
                     <Route path="/ReturnRefund" element={<ShippingPolicy />} />
+<<<<<<< HEAD
+                    <Route path="/OrderPackaging" element={<OrderPackaging />} />
+=======
+>>>>>>> main
                     <Route path="/privacy-security" element={<PrivacySecurity />} />
                 </Routes>
 

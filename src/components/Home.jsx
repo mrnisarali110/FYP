@@ -94,6 +94,17 @@ const Home = () => {
           </Card.Body>
         </Card>
       </Col>
+<<<<<<< HEAD
+      <Col md={4} className="mb-4">
+        <div className="custom-card">
+          <Card className="shadow-sm h-100 border-primary">
+            <Card.Img variant="top" src={bulkImage} alt="Service 3" />
+            <Card.Body>
+              <Card.Text className="text-dark">Bulk Ordering.</Card.Text>
+            </Card.Body>
+          </Card>
+        </div>
+=======
       <Col md={4} className="mb-4 d-flex align-items-stretch">
         <Card className="custom-card shadow-sm border-primary w-100">
           <Card.Img variant="top" src={bulkImage} alt="Service 3" />
@@ -101,6 +112,7 @@ const Home = () => {
             <Card.Text className="text-dark">Bulk Ordering</Card.Text>
           </Card.Body>
         </Card>
+>>>>>>> main
       </Col>
     </Row>
 
